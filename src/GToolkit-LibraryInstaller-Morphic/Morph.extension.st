@@ -1,6 +1,6 @@
 Extension { #name : #Morph }
 
-{ #category : #'*GToolkit-LibraryInstaller' }
+{ #category : #'*GToolkit-LibraryInstaller-Morphic' }
 Morph >> gtInstallerOpenInWindowAt: aPoint [
 	| aWorld window extent |
 	
