@@ -18,3 +18,20 @@ installer running: [ MozServices isRunning ].
 installer works: [ MozLibrary uniqueInstance hasModule ].
 installer postInstall: [ MozServices start ].
 ```
+
+Running the installer:
+```
+installer run
+```
+
+## Library Installer UI
+
+Library Installer supports visual logging of the installation process. It can is optional and should be connected to the installer explicitely:
+```smalltalk
+| ui |
+ui := GtLibraryInstallerMorph new.
+ui installer: installer.
+ui extent: 650@300.
+ui openInBorderlessWindow.
+```
+**The UI must be connected to the Installer before begin of the installation process!**
