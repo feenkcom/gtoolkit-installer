@@ -1,6 +1,24 @@
 # GToolkit Installer
 GT Installer is a set of tools for installation of various software system artefacts such as shared libraries or projects
 
+## Installation
+The following script loads GT Installer in Pharo:
+```smalltalk
+Metacello new
+  baseline: 'GToolkitInstaller';
+  repository: 'github://feenkcom/gtoolkit-installer/src';
+  load
+```
+*Installer does not depend on GToolkit*
+
+#### Dependency
+Add me to your baseline:
+```smalltalk
+spec
+  baseline: 'GToolkitInstaller'
+   with: [ spec repository: 'github://feenkcom/gtoolkit-installer/src' ]
+```
+
 ## Library Installer
 Library Installer helps with downloading and installation shared libraries along side the image or vm.
 I should be configured by the user for a specific library.
