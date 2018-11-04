@@ -14,6 +14,7 @@ installer library: 'Moz2D'.
 installer version: 'development'.
 installer binary: 'libMoz2D'.
 installer url: 'https://dl.feenk.com/{library}/{platform}/{version}/{arch}/{binary}.{extension}'.
+installer icon: (SpartaCanvas logo scaledToSize: 50@50).
 installer running: [ MozServices isRunning ].
 installer works: [ MozLibrary uniqueInstance hasModule ].
 installer postInstall: [ MozServices start ].
