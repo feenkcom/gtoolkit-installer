@@ -135,9 +135,10 @@ GtLibraryInstallerMorph >> newStepList [
 
 { #category : #opening }
 GtLibraryInstallerMorph >> openInBorderlessWindow [
-	^ (self asBrickedMorph gtInstallerOpenInWindowAt: 0@28)
+	^ (self asBrickedMorph gtInstallerOpenInWindowAt: World width @28)
 		setProperty: #morphicLayerNumber toValue: SmallInteger minVal;
 		makeBorderless;
+		setToAdhereToEdge: #right;
 		beWithoutGrips;
 		removeLabelArea
 ]
