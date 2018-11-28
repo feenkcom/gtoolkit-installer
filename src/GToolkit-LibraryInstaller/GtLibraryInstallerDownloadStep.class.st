@@ -26,6 +26,7 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 		[ ZnClient new
 			url: anInstaller generateUrl;
 			signalProgress: true;
+			numberOfRetries: 3;
 			timeout: 42; "timeout 42 seconds"
 			downloadTo: downloadFilename.
 			NonInteractiveTranscript stdout cr. ]
