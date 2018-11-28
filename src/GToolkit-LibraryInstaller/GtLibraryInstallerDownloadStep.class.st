@@ -24,10 +24,9 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 		previousProgress := 0.
 
 		[ ZnClient new
-			"A horrible hack... using wget works, with ZnClient 403 Forbidden"
 			url: anInstaller generateUrl;
 			signalProgress: true;
-			timeout: 10 * 60; "timeout 10min"
+			timeout: 45; "timeout 45 seconds"
 			downloadTo: downloadFilename.
 			NonInteractiveTranscript stdout cr. ]
 		on: HTTPProgress
