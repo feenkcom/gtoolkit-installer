@@ -35,6 +35,15 @@ GtLibraryInstallerError >> initialize [
 	help := self defaultHelp
 ]
 
+{ #category : #signaling }
+GtLibraryInstallerError >> signal [
+	NonInteractiveTranscript stderr
+		cr;
+		show: '[', self class name, '] ', self messageText;
+		cr.
+	super signal
+]
+
 { #category : #accessing }
 GtLibraryInstallerError >> stack [
 	^ self signalerContext stack
