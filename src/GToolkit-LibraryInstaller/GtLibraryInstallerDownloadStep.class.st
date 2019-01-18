@@ -24,13 +24,13 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 		previousProgress := 0.
 
 		[
-			ZnClient new
+			"ZnClient new
 				url: anInstaller generateUrl;
 				signalProgress: true;
 				numberOfRetries: 5;
 				timeout: 100;
-				downloadTo: downloadFilename.
-			NonInteractiveTranscript stdout cr. ]
+				downloadTo: downloadFilename."
+			NonInteractiveTranscript stdout show: 'Done!'; cr. ]
 		on: HTTPProgress
 		do: [ :progress |
 			(progress isEmpty not and: [ progress fraction asFloat > (previousProgress + 0.05) ])
