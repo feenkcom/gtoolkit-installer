@@ -19,29 +19,34 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 	downloadFilename := anInstaller downloadedFilePath.
 	NonInteractiveTranscript stdout cr; show: 'Downloading ', anInstaller generateUrl, ' to ', downloadFilename asString, ' ...'; cr.
 	
-	 "[
+	 [
 		| previousProgress |	
 		previousProgress := 0.
 
-		[ ZnClient new
-			url: anInstaller generateUrl;
-			signalProgress: true;
-			numberOfRetries: 5;
-			timeout: 100;
-			downloadTo: downloadFilename.
+		[
+			ZnClient new
+				url: anInstaller generateUrl;
+				signalProgress: true;
+				numberOfRetries: 5;
+				timeout: 100;
+				downloadTo: downloadFilename.
 			NonInteractiveTranscript stdout cr. ]
 		on: HTTPProgress
 		do: [ :progress |
 			(progress isEmpty not and: [ progress fraction asFloat > (previousProgress + 0.05) ])
 				ifTrue: [
 					previousProgress := progress fraction asFloat.
-					anInstaller announce: (GtLibraryInstallerProgressAnnouncement new
-						progress: progress fraction asFloat ;
-						message: 'Downloading Moz2D...') ].
+					NonInteractiveTranscript stdout show: progress asString; cr.
 
-			progress resume ] ]
-				on: NameLookupFailure
-				do: [ :anError | GtLibraryInstallerCustomError new message: anError messageText capitalized; help: 'Double check your internet connection and try again'; signal ]"
+					"anInstaller announce: (GtLibraryInstallerProgressAnnouncement new
+						progress: progress fraction asFloat ;
+						message: 'Downloading Moz2D...')" ].
+
+			progress resume ]
+		
+		]
+		on: NameLookupFailure
+		do: [ :anError | GtLibraryInstallerCustomError new message: anError messageText capitalized; help: 'Double check your internet connection and try again'; signal ]
 ]
 
 { #category : #private }
