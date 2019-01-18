@@ -142,8 +142,8 @@ GtLibraryInstaller >> initialize [
 GtLibraryInstaller >> initializeSteps [
 	self addStep: GtLibraryInstallerValidationStep new.
 	self addStep: GtLibraryInstallerPreparationStep new.
-	"self addStep: GtLibraryInstallerDownloadStep new.
-	self addStep: GtLibraryInstallerInstallStep new.
+	self addStep: GtLibraryInstallerDownloadStep new.
+	"self addStep: GtLibraryInstallerInstallStep new.
 	self addStep: GtLibraryInstallerDoneStep new"
 ]
 
