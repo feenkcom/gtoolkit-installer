@@ -19,14 +19,14 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 	downloadFilename := anInstaller downloadedFilePath.
 	NonInteractiveTranscript stdout cr; show: 'Downloading ', anInstaller generateUrl, ' to ', downloadFilename asString, ' ...'; cr.
 
-	ZnClient new
+	"ZnClient new
 		url: anInstaller generateUrl;
 		signalProgress: false;
 		numberOfRetries: 1;
 		timeout: 50;
-		downloadTo: downloadFilename.
+		downloadTo: downloadFilename."
 
-	 "[
+	 [
 		| previousProgress |	
 		previousProgress := 0.
 
@@ -53,7 +53,7 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 		
 		]
 		on: NameLookupFailure
-		do: [ :anError | GtLibraryInstallerCustomError new message: anError messageText capitalized; help: 'Double check your internet connection and try again'; signal ]"
+		do: [ :anError | GtLibraryInstallerCustomError new message: anError messageText capitalized; help: 'Double check your internet connection and try again'; signal ]
 ]
 
 { #category : #private }
