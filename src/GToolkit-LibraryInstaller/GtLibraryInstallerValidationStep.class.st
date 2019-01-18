@@ -11,6 +11,10 @@ GtLibraryInstallerValidationStep >> defaultTitle [
 
 { #category : #running }
 GtLibraryInstallerValidationStep >> doActionIn: anInstaller [
+	
+	"log VM stats to stdout"
+	(String streamContents: [ :aStream | SystemReporter new reportVMStats: aStream ])
+		linesDo: [ :each | NonInteractiveTranscript stdout show: each; cr ].
 
 	self logCr: '
 =====================================================
