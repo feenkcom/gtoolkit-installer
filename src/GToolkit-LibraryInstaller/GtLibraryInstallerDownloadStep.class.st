@@ -17,33 +17,28 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 	self ensureDestinationFolder: destinationFolder.
 	
 	downloadFilename := anInstaller downloadedFilePath.
-	NonInteractiveTranscript stdout cr; show: 'Downloading ', anInstaller generateUrl, ' to ', downloadFilename asString, ' ...'; cr.
-
-	"ZnClient new
-		url: anInstaller generateUrl;
-		signalProgress: false;
-		numberOfRetries: 1;
-		timeout: 50;
-		downloadTo: downloadFilename."
+	self debugLogCr: 'Downloading ', anInstaller generateUrl, ' to ', downloadFilename asString, ' ...'.
 
 	 [
 		| previousProgress |	
 		previousProgress := 0.
 
 		[
+			self debugLog: String cr, 'Progress '.
 			ZnClient new
 				url: anInstaller generateUrl;
 				signalProgress: true;
 				numberOfRetries: 5;
 				timeout: 100;
 				downloadTo: downloadFilename.
-			NonInteractiveTranscript stdout show: 'Done!'; cr. ]
+
+			self debugLog: ' Done!' ]
 		on: HTTPProgress
 		do: [ :progress |
 			(progress isEmpty not and: [ progress fraction asFloat > (previousProgress + 0.05) ])
 				ifTrue: [
 					previousProgress := progress fraction asFloat.
-					NonInteractiveTranscript stdout show: progress asString; cr.
+					self debugLog: '.'.
 
 					anInstaller announce: (GtLibraryInstallerProgressAnnouncement new
 						progress: progress fraction asFloat ;

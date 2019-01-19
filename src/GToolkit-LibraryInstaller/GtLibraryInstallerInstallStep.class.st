@@ -29,13 +29,12 @@ GtLibraryInstallerInstallStep >> doActionIn: anInstaller [
 	pluginPath isWritable
 		ifFalse: [  Error signal: 'Library destination must be writable' ].
 
-	NonInteractiveTranscript stdout show: 'Installing library to ', pluginPath asString; cr.
+	self debugLogCr: 'Installing library to ', pluginPath asString.
 	
 	 [ downloadFileName moveTo: pluginPath ]
 		on: Error
 		do: [ GtLibraryInstallerErrorSandboxed signal ].
-	
-	
+
 	[ anInstaller destinationFolder deleteAll. ]
 		on: Error
 		do: [ Error signal: 'Was not able to delete temporary directory: ', anInstaller destinationFolder asString ].

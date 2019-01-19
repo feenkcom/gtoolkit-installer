@@ -21,6 +21,23 @@ GtLibraryInstallerStep >> beacon [
 	^ beacon
 ]
 
+{ #category : #logging }
+GtLibraryInstallerStep >> debugLog: aString [
+	| aNonInteractiveTranscript |
+
+	Transcript show: aString.
+	Transcript flush.
+	
+	aNonInteractiveTranscript := NonInteractiveTranscript stdout.
+	aString linesDo: [ :each | aNonInteractiveTranscript show: each; cr ].
+	aNonInteractiveTranscript flush
+]
+
+{ #category : #logging }
+GtLibraryInstallerStep >> debugLogCr: aString [
+	self debugLog: String cr, aString, String cr
+]
+
 { #category : #initialization }
 GtLibraryInstallerStep >> defaultTitle [
 	^ 'Step'
@@ -91,17 +108,13 @@ GtLibraryInstallerStep >> isDone: anObject [
 { #category : #logging }
 GtLibraryInstallerStep >> log: aString [
 	installer announce: (GtLibraryInstallerLogAnnouncement new message: aString).
-
-	aString linesDo: [ :each | NonInteractiveTranscript stdout show: each; cr ].
+	
+	self debugLog: aString
 ]
 
 { #category : #logging }
 GtLibraryInstallerStep >> logCr: aString [
-	installer announce: (GtLibraryInstallerLogAnnouncement new message: aString, String cr).
-	
-	aString linesDo: [ :each | NonInteractiveTranscript stdout show: each; cr ].
-	
-	
+	self log: aString, String cr
 ]
 
 { #category : #running }

@@ -13,10 +13,7 @@ GtLibraryInstallerValidationStep >> defaultTitle [
 GtLibraryInstallerValidationStep >> doActionIn: anInstaller [
 	
 	"log VM stats to stdout"
-	NonInteractiveTranscript stdout cr.
-	(String streamContents: [ :aStream | SystemReporter new reportVMStats: aStream ])
-		linesDo: [ :each | NonInteractiveTranscript stdout show: each; cr ].
-	NonInteractiveTranscript stdout cr.
+	self debugLogCr: (String streamContents: [ :aStream | SystemReporter new reportVMStats: aStream ]).
 
 	self logCr: '
 =====================================================
