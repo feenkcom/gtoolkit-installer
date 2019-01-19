@@ -121,7 +121,8 @@ GtLibraryInstallerStep >> logCr: aString [
 
 { #category : #running }
 GtLibraryInstallerStep >> runIn: anInstaller [
-	
+	Smalltalk garbageCollect.
+
 	self isActive: true.
 	anInstaller announce: (GtLibraryInstallerStepAnnouncement new step: self).
 	
@@ -132,7 +133,9 @@ GtLibraryInstallerStep >> runIn: anInstaller [
 	self isActive: false.
 	self isDone: true.
 	
-	anInstaller flush
+	anInstaller flush.
+
+	Smalltalk garbageCollect
 ]
 
 { #category : #accessing }
