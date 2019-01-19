@@ -30,6 +30,7 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 				signalProgress: true;
 				numberOfRetries: 5;
 				timeout: 100;
+				logToTranscript;
 				downloadTo: downloadFilename.
 
 			self debugLog: ' Done!' ]
