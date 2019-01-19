@@ -24,10 +24,12 @@ GtLibraryInstallerStep >> beacon [
 { #category : #logging }
 GtLibraryInstallerStep >> debugLog: aString [
 	| aNonInteractiveTranscript |
-
-	Transcript show: aString.
-	Transcript flush.
 	
+	Transcript class == NonInteractiveTranscript
+		ifFalse: [
+			Transcript show: aString.
+			Transcript flush ].
+
 	aNonInteractiveTranscript := NonInteractiveTranscript stdout.
 	aString linesDo: [ :each | aNonInteractiveTranscript show: each; cr ].
 	aNonInteractiveTranscript flush
