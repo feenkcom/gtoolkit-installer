@@ -26,5 +26,5 @@ GtLibraryInstallerWindows >> name [
 	"Return a name of this platform"
 	<return: #String>
 	
-	^ 'win'
+	^ 'windows'
 ]
