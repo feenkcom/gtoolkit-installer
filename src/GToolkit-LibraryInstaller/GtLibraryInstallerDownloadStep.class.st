@@ -43,7 +43,7 @@ GtLibraryInstallerDownloadStep >> doActionIn: anInstaller [
 
 					anInstaller announce: (GtLibraryInstallerProgressAnnouncement new
 						progress: progress fraction asFloat ;
-						message: 'Downloading Moz2D...')].
+						message: 'Downloading ', anInstaller libraryName ,'...')].
 
 			progress resume ]
 		
