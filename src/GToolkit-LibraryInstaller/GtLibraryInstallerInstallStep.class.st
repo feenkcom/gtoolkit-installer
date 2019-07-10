@@ -26,8 +26,8 @@ GtLibraryInstallerInstallStep >> doActionIn: anInstaller [
 	pluginPath := anInstaller installedFilePath.
 
 	self ensureNotExist: pluginPath.
-	pluginPath isWritable
-		ifFalse: [  Error signal: 'Library destination must be writable' ].
+	anInstaller installationFolder isWritable
+		ifFalse: [  Error signal: 'Library destination must be writable ', anInstaller installationFolder asString ].
 
 	self debugLogCr: 'Installing library to ', pluginPath asString.
 	
