@@ -9,7 +9,7 @@ BaselineOfGToolkitInstaller >> baseline: spec [
 	<baseline>
 	spec for: #'common' do: [
 		spec baseline: 'Beacon' with: [
-				spec repository: 'github://feenkcom/pharo-beacon:0ba3c998da3849e6d1d00a6245699cd795d3bd65/repository' ].
+				spec repository: 'github://feenkcom/pharo-beacon:e6ab3f630bfd7e09dc4e983c9b094e62f44c817c/repository' ].
 		spec 
 			package: 'GToolkit-LibraryInstaller' with: [
 				spec requires: #(#Beacon ). ];
