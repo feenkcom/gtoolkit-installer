@@ -38,15 +38,12 @@ GtLibraryInstallerError >> initialize [
 { #category : #signaling }
 GtLibraryInstallerError >> signal [
 	| aMessage |
-	
-	aMessage := '[', self class name, '] ', self messageText.
-	
-	aMessage logCr.
+	aMessage := '[' , self class name , '] ' , self messageText.
+	aMessage traceCr.
 	NonInteractiveTranscript stderr
 		cr;
 		show: aMessage;
 		cr.
-
 	super signal
 ]
 
