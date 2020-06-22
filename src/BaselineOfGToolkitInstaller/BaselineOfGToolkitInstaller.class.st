@@ -13,5 +13,4 @@ BaselineOfGToolkitInstaller >> baseline: spec [
 		spec 
 			package: 'GToolkit-LibraryInstaller' with: [
 				spec requires: #(#Beacon ) ] ].
-
 ]
