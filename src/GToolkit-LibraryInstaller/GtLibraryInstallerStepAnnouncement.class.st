@@ -1,5 +1,7 @@
 "
 I am sent when step is switched. I hold a new step
+
+
 "
 Class {
 	#name : #GtLibraryInstallerStepAnnouncement,

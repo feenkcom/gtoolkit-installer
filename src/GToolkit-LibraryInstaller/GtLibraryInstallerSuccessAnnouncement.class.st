@@ -2,6 +2,8 @@
 I am sent when something important happened that is described in a message.
 
 The UI may want to show it in big font
+
+
 "
 Class {
 	#name : #GtLibraryInstallerSuccessAnnouncement,
