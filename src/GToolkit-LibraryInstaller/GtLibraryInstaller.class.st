@@ -4,9 +4,8 @@ I should be configured by the user for a specific library.
 
 The following example shows how I am configured for Sparta/Moz2D library.
 
-[[[
-| installer |
-installer := GtLibraryInstaller new.
+```
+installerinstaller := GtLibraryInstaller new.
 installer library: 'Moz2D'.
 installer version: 'development'.
 installer binary: 'libMoz2D'.
@@ -14,7 +13,9 @@ installer url: 'https://dl.feenk.com/{library}/{platform}/{version}/{arch}/{bina
 installer running: [ MozServices isRunning ].
 installer works: [ MozLibrary uniqueInstance hasModule ].
 installer postInstall: [ MozServices start ].
-]]]
+```
+
+
 "
 Class {
 	#name : #GtLibraryInstaller,

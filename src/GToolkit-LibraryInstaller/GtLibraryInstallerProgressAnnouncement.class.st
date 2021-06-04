@@ -2,6 +2,8 @@
 I am sent when the progress value of the current step changes.
 
 The UI may want to subscribe to this event and show a progressbar
+
+
 "
 Class {
 	#name : #GtLibraryInstallerProgressAnnouncement,
