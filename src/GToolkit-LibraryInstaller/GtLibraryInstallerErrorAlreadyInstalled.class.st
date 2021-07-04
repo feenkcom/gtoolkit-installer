@@ -17,3 +17,8 @@ Library can not be upgraded once installed.
 GtLibraryInstallerErrorAlreadyInstalled >> defaultMessage [
 	^ 'Library is already installed'
 ]
+
+{ #category : #accessing }
+GtLibraryInstallerErrorAlreadyInstalled >> shouldBeLogged [
+	^ false
+]

@@ -11,19 +11,21 @@ GtLibraryInstallerValidationStep >> defaultTitle [
 
 { #category : #running }
 GtLibraryInstallerValidationStep >> doActionIn: anInstaller [
-
+	| doesWork |
 	self logCr: '
 =====================================================
 =============== GToolkit Installer ==================
 =====================================================
 '.
 
-	self logCr: 'Library is already installed:'.
-	anInstaller doesWork
+	doesWork := anInstaller doesWork.
+
+	self logCr: anInstaller libraryName, ' library is already installed:'.
+	doesWork
 		ifTrue: [ self logCr: String tab, ' - yes' ]
 		ifFalse: [ self logCr: String tab, ' - no' ].
 
 	"Library already exists and running, no need to install it again"
-	anInstaller isRunning
+	doesWork
 		ifTrue: [ ^ GtLibraryInstallerErrorAlreadyInstalled signal ]
 ]
