@@ -12,12 +12,8 @@ GtLibraryInstallerInstallStep >> defaultTitle [
 { #category : #running }
 GtLibraryInstallerInstallStep >> doActionIn: anInstaller [
 	| pluginPath downloadFileName |
-		
-	downloadFileName := anInstaller downloadedFilePath.
 
-	"Library already exists and running, no need to install it again"
-	anInstaller isRunning
-		ifTrue: [ GtLibraryInstallerErrorAlreadyInstalled signal ].
+	downloadFileName := anInstaller downloadedFilePath.
 
 	downloadFileName exists
 		"Bug in installer"

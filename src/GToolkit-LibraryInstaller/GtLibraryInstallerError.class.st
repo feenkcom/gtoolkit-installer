@@ -35,15 +35,22 @@ GtLibraryInstallerError >> initialize [
 	help := self defaultHelp
 ]
 
+{ #category : #accessing }
+GtLibraryInstallerError >> shouldBeLogged [
+	^ true
+]
+
 { #category : #signaling }
 GtLibraryInstallerError >> signal [
-	| aMessage |
-	aMessage := '[' , self class name , '] ' , self messageText.
-	aMessage traceCr.
-	NonInteractiveTranscript stderr
-		cr;
-		show: aMessage;
-		cr.
+	self shouldBeLogged
+		ifTrue: [
+			| aMessage |
+			aMessage := '[' , self class name , '] ' , self messageText.
+			aMessage traceCr.
+			NonInteractiveTranscript stderr
+				cr;
+				show: aMessage;
+				cr ].
 	super signal
 ]
 

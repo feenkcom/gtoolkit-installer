@@ -10,7 +10,6 @@ installer library: 'Moz2D'.
 installer version: 'development'.
 installer binary: 'libMoz2D'.
 installer url: 'https://dl.feenk.com/{library}/{platform}/{version}/{arch}/{binary}.{extension}'.
-installer running: [ MozServices isRunning ].
 installer works: [ MozLibrary uniqueInstance hasModule ].
 installer postInstall: [ MozServices start ].
 ```
@@ -31,7 +30,6 @@ Class {
 		'libraryName',
 		'binaryName',
 		'worksBlock',
-		'runningBlock',
 		'postInstallBlock',
 		'icon'
 	],
@@ -126,7 +124,6 @@ GtLibraryInstaller >> initialize [
 	version := 'development'.
 	urlStencil := GtLibraryInstallerUrlStencil new.
 
-	runningBlock := [ false ].
 	worksBlock := [ true ].
 
 	steps := OrderedCollection new.
@@ -163,13 +160,6 @@ GtLibraryInstaller >> installedFilePath [
 	^ self installationFolder / (binaryName, '.', self platform extension)
 ]
 
-{ #category : #'private - testing' }
-GtLibraryInstaller >> isRunning [
-	"Return true if a library we are trying to install is already running"
-	
-	^ runningBlock value
-]
-
 { #category : #configuration }
 GtLibraryInstaller >> library: aString [
 	"Set the library name, for example Moz2D or Winit"
@@ -203,18 +193,15 @@ GtLibraryInstaller >> postInstall: aBlock [
 { #category : #running }
 GtLibraryInstaller >> run [
 	self steps do: [ :aStep |
-		 [ [ aStep runIn: self ]
+		 [ [ [ aStep runIn: self ]
+				on: GtLibraryInstallerErrorAlreadyInstalled
+				do: [
+					"finish if it is already installed"
+					^ self ] ]
 			on: GtLibraryInstallerError
 			do: [ :anError | ^ aStep handleError: anError in: self ] ]
 				on: Error
 				do: [ :anError | ^ aStep handleError: (GtLibraryInstallerUnhandledError new error: anError) in: self] ]
-]
-
-{ #category : #configuration }
-GtLibraryInstaller >> running: aBlock [
-	"Set a block used to check wether a library is already running (otherwise we will not be able to upgrade it)"
-	
-	runningBlock := aBlock
 ]
 
 { #category : #'private - accessing' }
