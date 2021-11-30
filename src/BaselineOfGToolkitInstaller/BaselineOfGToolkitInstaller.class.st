@@ -1,16 +1,16 @@
 Class {
-	#name : 'BaselineOfGToolkitInstaller',
-	#superclass : 'BaselineOf',
-	#category : 'BaselineOfGToolkitInstaller'
+	#name : #BaselineOfGToolkitInstaller,
+	#superclass : #BaselineOf,
+	#category : #BaselineOfGToolkitInstaller
 }
 
-{ #category : 'baseline' }
+{ #category : #baseline }
 BaselineOfGToolkitInstaller >> baseline: spec [
 	<baseline>
 	spec for: #'common' do: [
 		spec
 			baseline: 'Beacon' with: [
-				spec repository: 'github://feenkcom/pharo-beacon:a119e739bc378ca2a95883e074090d90fed4edeb/repository' ].
+				spec repository: 'github://feenkcom/pharo-beacon:89477b28e468d10cb46d61a8c5b8d83ee0b2d592/repository' ].
 
 		spec package: 'GToolkit-LibraryInstaller' with: [
 			spec requires: #('Beacon') ].
